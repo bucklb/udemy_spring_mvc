@@ -1,12 +1,11 @@
 <html>
 <head>
-<title>Hello World!</title>
+<title>Udemy Spring</title>
 </head>
 
 <body>
-<h2>Hi - see message below: mvcTest</h2>
-<h2>message is : ${message}</h2>
-<h2>Hi - see message above</h2>
+    <!-- Offer a link.  Behind the scenes it gets run past the controller to see if it is mapped to a call -->
+    <a href="showForm">Hi - register here </a>
 </body>
 
 </html>
