@@ -4,10 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
 
 // BB : Flag that this is something that can act as a controller (and therefore have requests directed at it)
 //      and allow specification of the root URL (so could distinguish between PSM and CM URLs that go to different controllers)
-@RequestMapping("")
+@RequestMapping("")     // parent mapping (so could be /claims or /schedules etc to divvy up the mappings (which will be RELATIVE to this)
 @Controller
 public class HelloWorldController {
 
@@ -17,8 +20,14 @@ public class HelloWorldController {
     }
 
     @RequestMapping(value = "/processForm")
-    public String processTheForm(ModelMap model){
-        model.addAttribute("name", "Big Nose");
+    public String processTheForm(HttpServletRequest request,   ModelMap model){
+
+        // Note - can get the parameter passed in directly (so the "extract" code is in the call).  Why?
+        // This binds the "parameter" and the variable ?? Two way traffic - update to variable updates param's value ??
+        // public String processTheForm(@RequestParam("theName") String theName, ModelMap model){}
+
+        String theName=request.getParameter("theName");
+        model.addAttribute("name", "Senor "+theName.toUpperCase() );
         return "hw";
     }
 
