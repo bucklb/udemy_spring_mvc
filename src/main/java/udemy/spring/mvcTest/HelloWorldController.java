@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 public class HelloWorldController {
 
     @RequestMapping(value = "/showForm")
-    public String showTheForm(){
+    public String showTheForm(ModelMap model){
+        model.addAttribute("student", new Student());
         return "hwForm";
     }
 
